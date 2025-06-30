@@ -3,6 +3,10 @@ package com.femcoders.toy_store_backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,6 +19,9 @@ public class Category {
     @NotBlank(message = "Name cannot be blank")
     @Size(max = 30, message = "Name cannot be longer than 30 characters")
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
 
     public Category() {
     }
