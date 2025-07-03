@@ -3,10 +3,12 @@ package com.femcoders.toy_store_backend.services;
 import com.femcoders.toy_store_backend.models.Category;
 import com.femcoders.toy_store_backend.models.Product;
 import com.femcoders.toy_store_backend.repositories.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 

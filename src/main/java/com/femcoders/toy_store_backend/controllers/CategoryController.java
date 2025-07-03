@@ -10,6 +10,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/api/categories")
 public class CategoryController {
     private final CategoryService categoryService;
 
