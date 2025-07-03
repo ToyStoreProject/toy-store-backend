@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name= "carts")
 public class Cart {
@@ -15,7 +18,10 @@ public class Cart {
     @JoinColumn(name="user_id")
     private User user;
 
-    private Product product;
+    //private Product product;
+
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems = new ArrayList<>();
 
     @Positive
     @NotNull
