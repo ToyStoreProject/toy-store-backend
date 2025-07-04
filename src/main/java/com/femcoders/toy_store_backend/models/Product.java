@@ -40,7 +40,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<CartItem> cartItems = new ArrayList<>();
 
-    public Product(){
+    public Product(String name, String imageUrl, boolean featured, double price){
+        this.name= name;
+        this.imageUrl = imageUrl;
+        this.featured=featured;
+        this.price=price;
     }
 
     public Long getId() {
