@@ -40,5 +40,4 @@ public class ProductService {
     public void deleteProduct(Product product) {
         productRepository.delete(product);
     }
-
 }
