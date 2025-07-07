@@ -15,22 +15,22 @@ public class Product {
     private Long id;
 
     @Column
-    @NotBlank(message = "Name cannot be blank")
-    @Size(max = 50, message = "Name cannot be longer than 50 characters")
+//    @NotBlank(message = "Name cannot be blank")
+//    @Size(max = 50, message = "Name cannot be longer than 50 characters")
     private String name;
 
-    @Pattern(
-            regexp = "^(https?://.*\\.(?:png|jpg|jpeg|gif|bmp|webp))$",
-            message = "The URL must to be valid and with an image extension (png, jpg, jpeg, gif, bmp, webp)"
-    )
+//    @Pattern(
+//            regexp = "^(https?://.*\\.(?:png|jpg|jpeg|gif|bmp|webp))$",
+//            message = "The URL must to be valid and with an image extension (png, jpg, jpeg, gif, bmp, webp)"
+//    )
     private String imageUrl;
 
     private boolean featured;
 
-    @Positive
-    @NotNull(message = "The price must be between 0.01 and 9999.99")
-    @DecimalMin(value = "0.01")
-    @DecimalMax(value = "9999.99")
+//    @Positive
+//    @NotNull(message = "The price must be between 0.01 and 9999.99")
+//    @DecimalMin(value = "0.01")
+//    @DecimalMax(value = "9999.99")
     private double price;
 
     @ManyToOne
@@ -40,7 +40,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<CartItem> cartItems = new ArrayList<>();
 
-    public Product(){
+      public Product(String name, String imageUrl, boolean featured, double price, Category category, List<CartItem> cartItems) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.featured = featured;
+        this.price = price;
     }
 
     public Long getId() {

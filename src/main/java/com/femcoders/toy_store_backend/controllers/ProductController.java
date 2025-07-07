@@ -1,9 +1,11 @@
 package com.femcoders.toy_store_backend.controllers;
 
+import com.femcoders.toy_store_backend.dtos.product.ProductRequest;
 import com.femcoders.toy_store_backend.dtos.product.ProductResponse;
 import com.femcoders.toy_store_backend.models.Product;
 import com.femcoders.toy_store_backend.models.Product;
 import com.femcoders.toy_store_backend.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,11 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Product>> getAllProducts() {
+//        List<Product> products = productService.getAllProducts();
+//        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+//    }
 
     @GetMapping("/{id}")
     public Optional<Product> getProductById(@PathVariable Long id) {
@@ -33,8 +35,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public void addProduct(@RequestBody Product newProduct) {
-        productService.addProduct(newProduct);
+    public ResponseEntity<ProductResponse> addProduct(@Valid @RequestBody ProductRequest productRequest) {
+        return new ResponseEntity<>(productService.addProduct(productRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

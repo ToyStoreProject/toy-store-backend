@@ -1,5 +1,7 @@
 package com.femcoders.toy_store_backend.services;
 
+import com.femcoders.toy_store_backend.dtos.product.ProductMapper;
+import com.femcoders.toy_store_backend.dtos.product.ProductRequest;
 import com.femcoders.toy_store_backend.dtos.product.ProductResponse;
 import com.femcoders.toy_store_backend.models.Product;
 import com.femcoders.toy_store_backend.models.User;
@@ -17,16 +19,19 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
-    }
+//    public List<ProductResponse> getAllProducts(){
+//        List<Product> products = productRepository.findAll();
+//        return products.stream().map(product -> ProductMapper.entityToDto(product)).toList();
+//    }
 
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
 
-    public Product addProduct(Product newProduct){
-        return productRepository.save(newProduct);
+    public ProductResponse addProduct(ProductRequest productRequest) {
+        Product newProduct = ProductMapper.dtoToEntity(productRequest);
+        Product savedProduct = productRepository.save(newProduct);
+        return ProductMapper.entityToDto(savedProduct);
     }
 
     public Product updateProduct(Product product, Product updatedProduct){
